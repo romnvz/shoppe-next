@@ -1,0 +1,18 @@
+.logo {
+  font-family: 'Allerta Stencil', sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--c-black);
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40.5px;
+
+  .accent {
+    color: var(--c-gold);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 25px;
+  }
+}
