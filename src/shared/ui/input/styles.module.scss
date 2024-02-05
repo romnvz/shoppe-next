@@ -1,0 +1,23 @@
+.field {
+  width: 100%;
+  display: flex;
+  position: relative;
+
+  .input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+
+    &.primary {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--c-gray-100);
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 15px;
+    right: 0;
+  }
+}

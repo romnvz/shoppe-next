@@ -1,0 +1,29 @@
+.button {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 4px;
+  padding: 12px 0;
+  cursor: pointer;
+
+  &.light {
+    border: 1px solid var(--c-black);
+    background: var(--c-white);
+    color: var(--c-black);
+  }
+
+  &.dark {
+    border: 1px solid var(--c-white);
+    background: var(--c-black);
+    color: var(--c-black);
+  }
+
+  &.large {
+    width: 100%;
+  }
+
+  &.small {
+    padding: 8px 16px;
+  }
+}

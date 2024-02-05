@@ -1,36 +1,11 @@
 .header {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
   background: var(--c-white);
 
   .container {
-    margin: 0 auto;
-    max-width: 1248px;
-    padding: 17px 24px;
-
-    &::after {
-      margin-top: 16px;
-      content: "";
-      display: block;
-      border-bottom: 1px solid var(--c-gray-100);
-    }
-
-    @media (max-width: 768px) {
-      padding: 15px;
-
-      &::after {
-        margin-top: 0;
-        content: none;
-      }
-    }
-
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 25px;
+    padding-bottom: 25px;
   }
 }

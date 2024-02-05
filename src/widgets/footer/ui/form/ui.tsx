@@ -1,15 +1,15 @@
-import Image from 'next/image'
 import styles from './styles.module.scss'
+import { Input } from '@/shared/ui'
 
 export const Form = () => {
   return (
     <form className={styles['form']}>
-      <input
-        className={styles['input']}
+      <Input
+        variant={'primary'}
         type="email"
         placeholder="Ваш email для акций и предложений"
+        icon={'/icons/arrow-right.svg'}
       />
-			<Image className={styles['icon']} src={'/icons/arrow-right.svg'} width={25} height={9} alt='arrow-right' />
     </form>
   )
 }

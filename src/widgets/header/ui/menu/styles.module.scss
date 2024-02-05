@@ -1,9 +1,10 @@
 .menu {
-  position: fixed;
+  position: absolute;
   width: 100%;
   min-width: 320px;
-  height: 100vh;
+  height: 100svh;
   background: var(--c-white);
+  z-index: 1;
 
   .container {
     display: flex;

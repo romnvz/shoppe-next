@@ -1,0 +1,92 @@
+.hero {
+  .container {
+    .carousel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 16px;
+      overflow: hidden;
+
+      .inner {
+        white-space: nowrap;
+        transition: transform 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+        .item {
+          position: relative;
+          width: 100%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+
+          @media (max-width: 768px) {
+            height: 350px;
+          }
+
+          .thumbnail {
+            position: relative !important;
+            object-fit: cover;
+          }
+
+          .info {
+            position: absolute;
+            top: 50%;
+            bottom: 50%;
+            left: 25px;
+            display: flex;
+            flex-direction: column;
+
+            .title {
+              color: var(--c-white);
+              font-size: 33px;
+              font-weight: 500;
+              line-height: 43px;
+              text-align: left;
+
+              @media (max-width: 768px) {
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 35px;
+              }
+
+              @media (max-width: 375px) {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 26px;
+              }
+            }
+
+            .price {
+              color: var(--c-white);
+              font-size: 26px;
+              font-weight: 400;
+              line-height: 35px;
+              text-align: left;
+
+              @media (max-width: 768px) {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 27px;
+              }
+
+              @media (max-width: 375px) {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 22px;
+              }
+            }
+
+            @media (max-width: 768px) {
+              top: 80%;
+              bottom: 20%;
+              left: 12px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

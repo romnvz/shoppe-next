@@ -1,0 +1,23 @@
+.spinner {
+  display: inline-block;
+  margin: .5em;
+  width: 8em;
+  height: 8em;
+  position: relative;
+  border-radius: 50%;
+
+  background-image: linear-gradient(-30deg, #ddd 50%, transparent 50%),
+  linear-gradient(90deg, #ddd 50%, var(--c-black) 50%);
+
+  &:after {
+    border-radius: 50%;
+    display: block;
+    content: "";
+    background: #fff;
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    height: 7em;
+    width: 7em;
+  }
+}

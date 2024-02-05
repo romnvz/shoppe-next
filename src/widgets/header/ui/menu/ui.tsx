@@ -8,11 +8,9 @@ import { accountPaths, basePaths } from './config'
 export const Menu = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 1 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.3,
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className={styles['menu']}>
       <div className={styles['container']}>
         <ul className={styles['list']}>

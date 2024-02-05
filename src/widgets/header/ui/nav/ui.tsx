@@ -8,7 +8,7 @@ import styles from './styles.module.scss'
 import { useHeaderStore } from '../../model'
 
 export const Nav = () => {
-  const { isOpen, toggle, close } = useHeaderStore()
+  const { isOpen, open, close } = useHeaderStore()
   const [isShowSearchForm, setIsShowSearchForm] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -48,12 +48,22 @@ export const Nav = () => {
             [styles['hidden']]: isShowSearchForm,
           })}
           onClick={() => setIsShowSearchForm(true)}>
-          <Image src={`/icons/search.svg`} width={19} height={19} alt={'Search button'} />
+          <Image
+            src={`/icons/search.svg`}
+            width={19}
+            height={19}
+            alt={'Search button'}
+          />
         </button>
         {accountPaths.map((path) => (
           <li className={styles['item']} key={path.href}>
             <Link className={styles['link']} href={path.href}>
-              <Image src={`/icons/${path.iconName}.svg`} width={19} height={19} alt={path.href} />
+              <Image
+                src={`/icons/${path.iconName}.svg`}
+                width={19}
+                height={19}
+                alt={path.href}
+              />
             </Link>
           </li>
         ))}
@@ -75,12 +85,26 @@ export const Nav = () => {
           </Link>
         </li>
         {!isOpen ? (
-          <button className={classNames(styles['item'], styles['hamburger'])} onClick={toggle}>
-            <Image src={`/icons/hamburger.svg`} width={19} height={19} alt={'Hamburger button'} />
+          <button
+            className={classNames(styles['item'], styles['hamburger'])}
+            onClick={open}>
+            <Image
+              src={`/icons/hamburger.svg`}
+              width={19}
+              height={19}
+              alt={'Hamburger button'}
+            />
           </button>
         ) : (
-          <button className={classNames(styles['item'], styles['hamburger'])} onClick={close}>
-            <Image src={`/icons/close.svg`} width={19} height={19} alt={'Hamburger button'} />
+          <button
+            className={classNames(styles['item'], styles['hamburger'])}
+            onClick={close}>
+            <Image
+              src={`/icons/close.svg`}
+              width={19}
+              height={19}
+              alt={'Hamburger button'}
+            />
           </button>
         )}
       </ul>

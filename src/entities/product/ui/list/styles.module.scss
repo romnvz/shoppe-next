@@ -1,0 +1,18 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 35px;
+  grid-row-gap: 70px;
+
+  //@media (max-width: 768px) {
+  //  max-width: 200px;
+  //  height: 200px;
+  //}
+
+  @media (max-width: 480px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
+    grid-column-gap: 16px;
+    grid-row-gap: 24px;
+  }
+}

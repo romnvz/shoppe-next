@@ -1,5 +1,8 @@
 'use client'
 
+import { AnimatePresence } from 'framer-motion'
+import classNames from 'classnames'
+
 import { Logo } from './logo'
 import { Menu } from './menu'
 import { Nav } from './nav'
@@ -11,13 +14,11 @@ export const Header = () => {
 
   return (
     <header className={styles['header']}>
-      <div className={styles['container']}>
-        <div className={styles['row']}>
-          <Logo />
-          <Nav />
-        </div>
+      <div className={classNames('container', styles['container'])}>
+        <Logo />
+        <Nav />
       </div>
-      {isOpen && <Menu />}
+      <AnimatePresence>{isOpen && <Menu />}</AnimatePresence>
     </header>
   )
 }

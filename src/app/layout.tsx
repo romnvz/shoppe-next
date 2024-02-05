@@ -1,21 +1,23 @@
+import { ReactNode } from 'react'
+
 import { Header } from '@/widgets/header'
 import { Footer } from '@/widgets/footer'
-import { WithToastProvider } from './_providers/with-toast'
+import { Provider } from './_providers'
 import './_styles/index.scss'
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>) {
   return (
     <html lang="ru">
       <body>
-        <WithToastProvider>
+        <Provider>
           <Header />
-          {children}
+          <main className="main">{children}</main>
           <Footer />
-        </WithToastProvider>
+        </Provider>
       </body>
     </html>
   )
