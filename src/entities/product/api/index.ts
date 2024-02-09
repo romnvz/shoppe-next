@@ -3,23 +3,24 @@ import { AxiosError } from 'axios'
 import type { IProductResponse } from '@/entities/product'
 import { http } from '@/shared/api'
 
+interface IProductSearchQueryParams {
+  limit: number
+  offset: number
+  name?: string
+  categoryId?: number
+  discounted?: string
+  priceMin?: number
+  priceMax?: number
+}
+
 export class ProductApi {
-  static async getProducts(params: {
-    limit: number
-    name?: string
-    categoryId?: number
-    discounted?: string
-    priceMin?: number
-    priceMax?: number
-  }) {
+  static async getProducts({ ...rest }: IProductSearchQueryParams) {
     try {
       const { data } = await http.get<IProductResponse>(
         process.env.NEXT_PUBLIC_BASE_URL + '/products',
         {
-          method: 'GET',
           params: {
-            offset: 0,
-            ...params,
+            ...rest,
           },
         },
       )
@@ -37,7 +38,6 @@ export class ProductApi {
       const { data } = await http.get<IProductResponse>(
         process.env.NEXT_PUBLIC_BASE_URL + '/products',
         {
-          method: 'GET',
           params: {
             limit: 8,
             offset: 0,

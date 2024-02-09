@@ -2,21 +2,34 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 
 import { ProductApi } from '@/entities/product/api'
 
-const productKey = ['products'] as unknown[]
-
-export const useGetProductsQuery = (params: {
+interface IProductSearchQueryParams {
   limit: number
   name?: string
   categoryId?: number
   discounted?: string
   priceMin?: number
   priceMax?: number
-}) => {
+}
+
+const productKey = ['products'] as unknown[]
+
+export const useGetProductsQuery = ({ ...rest }: IProductSearchQueryParams) => {
   return useInfiniteQuery({
-    queryKey: [productKey.concat(params)],
-    queryFn: () => ProductApi.getProducts(params),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, pages) => pages.length + 1,
+    queryKey: [productKey.concat(rest)],
+    queryFn: ({ pageParam = 0 }) =>
+      ProductApi.getProducts({ offset: pageParam, ...rest }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      if (!lastPage) {
+        return undefined
+      }
+
+      if (lastPage.offset + 10 > lastPage.totalProducts) {
+        return false
+      }
+
+      return lastPage?.offset + 10
+    },
   })
 }
 
