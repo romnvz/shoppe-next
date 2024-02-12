@@ -9,7 +9,7 @@ import { queryClient } from '@/shared/api'
 export const WithQueryProvider = ({ children }: { children: ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} />
       {children}
     </QueryClientProvider>
   )

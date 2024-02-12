@@ -22,3 +22,13 @@ export interface IProductResponse {
   offset: number
   products: IProduct[]
 }
+
+export interface IProductQueryParams {
+  limit: number
+  offset: number
+  name?: string
+  categoryId?: number
+  discounted?: string
+  priceMin?: number
+  priceMax?: number
+}

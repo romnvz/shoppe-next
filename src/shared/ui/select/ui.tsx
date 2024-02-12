@@ -1,16 +1,15 @@
 'use client'
 
-import cn from 'classnames'
+import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { ISelectOption } from './types'
-import styles from './styles.module.scss'
 
 interface TSelectProps {
   options: ISelectOption[]
-  value: string | string[] | undefined
+  value?: string | string[]
   label: string
   className?: string
   onChange: (option: ISelectOption) => void
@@ -35,13 +34,15 @@ export const Select = ({
   }
 
   return (
-    <div className={cn(styles['select'], className)}>
+    <div
+      className={clsx(
+        'w-full relative rounded-[4px] border border-blue-gray-200 bg-transparent px-3 py-2.5',
+        className,
+      )}>
       <motion.button
-        className={styles['button']}
-        onClick={() => setIsOpen(!isOpen)}>
-        <div className={styles['meta']}>
-          {selected.value ? selected.label : label}
-        </div>
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between">
+        <div className={''}>{selected.value ? selected.label : label}</div>
         <Image
           src={'/icons/arrow-down.svg'}
           width={7}
@@ -55,12 +56,14 @@ export const Select = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className={styles['list']}>
+            className={
+              'w-full absolute top-12 left-0 right-0 bg-white border border-blue-gray-200 z-10'
+            }>
             {options.map((option) => (
               <div
                 key={option.label}
                 onClick={handleSelect(option)}
-                className={styles['item']}>
+                className="px-3 py-2.5 hover:bg-yellow-800 hover:opacity-80 hover:text-white">
                 {option?.label}
               </div>
             ))}

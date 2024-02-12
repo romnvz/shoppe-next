@@ -9,7 +9,7 @@ const Toaster = dynamic(
     return Toaster
   },
   {
-    ssr: false,
+    ssr: true,
   },
 )
 

@@ -1,8 +1,6 @@
 'use client'
 
-import classNames from 'classnames'
-
-import styles from './styles.module.scss'
+import clsx from 'clsx'
 
 interface IToggleProps {
   selected: boolean
@@ -11,15 +9,19 @@ interface IToggleProps {
 
 export const Toggle = ({ selected, toggleSelected }: IToggleProps) => {
   return (
-    <button
-      className={classNames(styles['toggle'], {
-        [styles['active']]: selected,
-      })}
-      onClick={toggleSelected}>
+    <label className="relative inline-flex items-center cursor-pointer">
+      <input
+        type="checkbox"
+        checked={selected}
+        onChange={(e) => toggleSelected()}
+        className="sr-only peer"
+      />
       <div
-        className={classNames(styles['circle'], {
-          [styles['active']]: selected,
-        })}></div>
-    </button>
+        className="w-11 h-6 bg-slate-600 rounded-full peer-checked:after:translate-x-full 
+          rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white 
+          after:content-[''] after:absolute after:top-[2px] after:start-[2px] 
+          after:bg-white after:border-gray-300 after:border after:rounded-full 
+          after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-800 peer-checked:opacity-80"></div>
+    </label>
   )
 }

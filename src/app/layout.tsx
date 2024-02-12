@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { Header } from '@/widgets/header'
 import { Footer } from '@/widgets/footer'
 import { Provider } from './_providers'
-import './_styles/index.scss'
+import '@/shared/styles/index.css'
 
 export default function RootLayout({
   children,

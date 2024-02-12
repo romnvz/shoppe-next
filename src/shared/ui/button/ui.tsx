@@ -1,28 +1,30 @@
 import { ButtonHTMLAttributes } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
-import styles from './styles.module.scss'
-
+type TButtonVariant = 'contained' | 'text' | 'outlined'
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'light' | 'dark'
-  size: 'large' | 'small'
+  variant?: TButtonVariant
 }
 
 export const Button = ({
-  variant = 'dark',
-  size = 'large',
+  variant = 'text',
   className,
   children,
   ...props
 }: IButtonProps) => {
   return (
     <button
-      className={classNames(styles['button'], className, {
-        [styles['large']]: size === 'large',
-        [styles['small']]: size === 'small',
-        [styles['light']]: variant === 'light',
-        [styles['dark']]: variant === 'dark',
-      })}
+      className={clsx(
+        'px-4 h-10 cursor-pointer flex gap-2 items-center justify-center',
+        className,
+        {
+          contained:
+            'text-white bg-black border border-black rounded-[4px] disabled:opacity-50',
+          text: 'text-black',
+          outlined:
+            'text-black bg-white border border-black rounded-[4px] disabled:opacity-50',
+        }[variant],
+      )}
       {...props}>
       {children}
     </button>

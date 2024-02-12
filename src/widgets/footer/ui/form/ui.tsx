@@ -1,15 +1,12 @@
-import styles from './styles.module.scss'
-import { Input } from '@/shared/ui'
+import { TextField } from '@/shared/ui'
 
 export const Form = () => {
   return (
-    <form className={styles['form']}>
-      <Input
-        variant={'primary'}
-        type="email"
-        placeholder="Ваш email для акций и предложений"
-        icon={'/icons/arrow-right.svg'}
-      />
-    </form>
+    <TextField
+      variant="standard"
+      placeholder="Ваш email для акций и предложений"
+      className="max-w-72"
+      trailingIcon="/icons/arrow-right.svg"
+    />
   )
 }

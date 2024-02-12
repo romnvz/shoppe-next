@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
-import { IProduct } from '@/entities/product'
-import styles from './styles.module.scss'
+import { IProduct } from '@/shared/api'
 
 type TCardProps = {
   product: Partial<IProduct>
@@ -9,25 +8,24 @@ type TCardProps = {
 
 export const Card = ({ product }: TCardProps) => {
   return (
-    <div
-      className={styles['card']}>
-      <div className={styles['head']}>
+    <div className="flex flex-col gap-1.5 md:gap-6">
+      <div className="rounded-lg h-36 md:h-72 relative overflow-hidden">
+        {product.discount && (
+          <div className="left-2.5 top-2.5 px-2 py-0.5 absolute bg-yellow-800 opacity-80 text-white rounded-[4px] z-10">
+            - {product.discount}%
+          </div>
+        )}
         <Image
-          className={styles['image']}
+          className="object-cover"
           src={product.images![0]}
           alt={product.name ?? ''}
           fill
         />
       </div>
-      <div className={styles['body']}>
-        <div className={styles['name']}>{product?.name}</div>
-        <div className={styles['price']}>
-          {product.discount && (
-            <span className={styles['old']}>
-              $ {product.price! + product.discount}
-            </span>
-          )}
-          $ {product.price}
+      <div className="flex flex-col gap-1 md:gap-2">
+        <div className="text-base md:text-xl">{product?.name}</div>
+        <div className="text-base md:text-xl text-yellow-800 opacity-80">
+          $ {product.price},00
         </div>
       </div>
     </div>
