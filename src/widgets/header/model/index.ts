@@ -1,13 +1,13 @@
-import { create } from "zustand";
+import { create } from 'zustand'
 
-interface HeaderState {
-	isOpen: boolean
-	toggle: () => void
-	close: () => void
+interface IHeaderState {
+  isOpen: boolean
+  open: () => void
+  close: () => void
 }
 
-export const useHeaderStore = create<HeaderState>((set) => ({
-	isOpen: false,
-	toggle: () => set(() => ({ isOpen: true })),
-	close: () => set(() => ({ isOpen: false }))
+export const useHeaderStore = create<IHeaderState>((set) => ({
+  isOpen: false,
+  open: () => set(() => ({ isOpen: true })),
+  close: () => set(() => ({ isOpen: false })),
 }))

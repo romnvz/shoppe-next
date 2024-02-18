@@ -1,23 +1,32 @@
 'use client'
 
+import { useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
+
 import { Logo } from './logo'
 import { Menu } from './menu'
 import { Nav } from './nav'
 import { useHeaderStore } from '../model'
-import styles from './styles.module.scss'
 
 export const Header = () => {
   const { isOpen } = useHeaderStore()
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset'
+  }, [isOpen])
+
   return (
-    <header className={styles['header']}>
-      <div className={styles['container']}>
-        <div className={styles['row']}>
+    <header>
+      <div
+        className={
+          'container mx-auto max-w-7xl p-5 flex flex-col gap-6 md:after:border-b'
+        }>
+        <div className="flex justify-between items-center">
           <Logo />
           <Nav />
         </div>
       </div>
-      {isOpen && <Menu />}
+      <AnimatePresence>{isOpen && <Menu />}</AnimatePresence>
     </header>
   )
 }

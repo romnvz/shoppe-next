@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { PropsWithChildren } from 'react'
+import { ReactNode } from 'react'
 
 const Toaster = dynamic(
   async () => {
@@ -9,14 +9,14 @@ const Toaster = dynamic(
     return Toaster
   },
   {
-    ssr: false,
+    ssr: true,
   },
 )
 
-export const WithToastProvider = ({ children }: PropsWithChildren) => {
+export const WithToastProvider = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <Toaster position='bottom-center' />
+      <Toaster position="bottom-center" />
       {children}
     </>
   )

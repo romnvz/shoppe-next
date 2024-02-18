@@ -1,0 +1,1 @@
+export { LatestArrival } from './ui'

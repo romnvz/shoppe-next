@@ -1,15 +1,12 @@
-import Image from 'next/image'
-import styles from './styles.module.scss'
+import { TextField } from '@/shared/ui'
 
 export const Form = () => {
   return (
-    <form className={styles['form']}>
-      <input
-        className={styles['input']}
-        type="email"
-        placeholder="Ваш email для акций и предложений"
-      />
-			<Image className={styles['icon']} src={'/icons/arrow-right.svg'} width={25} height={9} alt='arrow-right' />
-    </form>
+    <TextField
+      variant="standard"
+      placeholder="Ваш email для акций и предложений"
+      className="max-w-72"
+      trailingIcon="/icons/arrow-right.svg"
+    />
   )
 }
