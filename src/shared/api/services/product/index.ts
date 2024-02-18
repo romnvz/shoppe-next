@@ -1,2 +1,12 @@
 export { ProductService } from './product-service'
-export type { IProduct, IProductResponse, IProductQueryParams } from './types'
+export type {
+	// Product
+	IProduct,
+	IProductList,
+	IProductQueryParams,
+	// Review
+	IReview,
+	IAddReviewDto,
+	// Filter
+	IFilter,
+} from './types'

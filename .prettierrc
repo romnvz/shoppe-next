@@ -2,10 +2,12 @@
   "trailingComma": "all",
   "tabWidth": 2,
   "semi": false,
+  "arrowParens": "avoid",
   "singleQuote": true,
   "printWidth": 80,
-  "jsxBracketSameLine": true,
-  "proseWrap": "preserve",
+  "proseWrap": "never",
   "jsxSingleQuote": false,
-  "bracketSameLine": false
+  "singleAttributePerLine": true,
+  "bracketSameLine": false,
+  "useTabs": true
 }
