@@ -7,10 +7,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from '@/shared/api'
 
 export const WithQueryProvider = ({ children }: { children: ReactNode }) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      {children}
-    </QueryClientProvider>
-  )
+	return (
+		<QueryClientProvider client={queryClient}>
+			<ReactQueryDevtools initialIsOpen={false} />
+			{children}
+		</QueryClientProvider>
+	)
 }

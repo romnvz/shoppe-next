@@ -1,21 +1,38 @@
 import Link from 'next/link'
-import Image from 'next/image'
 
-import { links } from './config'
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
 
 export const Links = () => {
-  return (
-    <ul className="flex items-center gap-6">
-      {links.map((link) => (
-        <Link href={link.href} key={link.href} className="relative w-5 h-5">
-          <Image
-            className="object-contain"
-            src={`/icons/social/${link.iconName}.svg`}
-            alt={link.iconName}
-            fill
-          />
-        </Link>
-      ))}
-    </ul>
-  )
+	return (
+		<ul className="flex items-center gap-6">
+			<Link href="http://linkedin.com">
+				<Linkedin
+					width={20}
+					height={20}
+					className="stroke-none fill-zinc-500"
+				/>
+			</Link>
+			<Link href="http://facebook.com">
+				<Facebook
+					width={20}
+					height={20}
+					className="stroke-none fill-zinc-500"
+				/>
+			</Link>
+			<Link href="http://instagram.com">
+				<Instagram
+					width={20}
+					height={20}
+					className="stroke-zinc-500"
+				/>
+			</Link>
+			<Link href="http://twitter.com">
+				<Twitter
+					width={20}
+					height={20}
+					className="stroke-none fill-zinc-500"
+				/>
+			</Link>
+		</ul>
+	)
 }
