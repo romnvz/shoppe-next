@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 
-import { NotFoundPage } from '@/views/not-found'
+import { NotFoundView } from '@/views/not-found'
 
 export const metadata: Metadata = {
 	title: 'Jwrly | Страница не найдена',
 }
 
-const NotFound = () => <NotFoundPage />
+const NotFound = () => <NotFoundView />
 
 export default NotFound

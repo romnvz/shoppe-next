@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -7,7 +8,7 @@ interface ICardProps {
 	product: Partial<IProduct>
 }
 
-export const Card = ({ product }: ICardProps) => {
+export const Card: FC<ICardProps> = ({ product }) => {
 	return (
 		<Link
 			href={`/product/${product.sku}`}
@@ -35,20 +36,5 @@ export const Card = ({ product }: ICardProps) => {
 				</div>
 			</div>
 		</Link>
-	)
-}
-
-export const Skeleton = () => {
-	return (
-		<div className="flex flex-col gap-1.5 md:gap-6">
-			<div className="rounded-lg h-36 md:h-72 relative overflow-hidden">
-				<div className="left-2.5 top-2.5 px-2 py-0.5 absolute bg-gray-200 h-6 w-12 rounded-[4px] z-10"></div>
-				<div className="bg-gray-300 rounded-[4px] w-full h-full"></div>
-			</div>
-			<div className="flex flex-col gap-1 md:gap-2">
-				<div className="w-full h-6 bg-gray-300 rounded-[4px]"></div>
-				<div className="w-2/3 h-6 bg-gray-300 rounded-[4px]"></div>
-			</div>
-		</div>
 	)
 }

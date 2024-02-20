@@ -1,7 +1,13 @@
-import { IProductList } from '@/shared/api'
-import { ProductCard, ProductCardSkeleton } from '@/entities/product'
+import { FC } from 'react'
 
-export const List = ({ products }: IProductList) => {
+import { IProduct } from '@/shared/api'
+import { ProductCard } from '@/entities/product'
+
+interface IListProps {
+	products: IProduct[]
+}
+
+export const List: FC<IListProps> = ({ products }) => {
 	return (
 		<div className={'grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12'}>
 			{products.map((product, index) => (
@@ -10,19 +16,6 @@ export const List = ({ products }: IProductList) => {
 					key={index}
 				/>
 			))}
-		</div>
-	)
-}
-
-export const Skeleton = () => {
-	return (
-		<div className={'grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12'}>
-			<ProductCardSkeleton />
-			<ProductCardSkeleton />
-			<ProductCardSkeleton />
-			<ProductCardSkeleton />
-			<ProductCardSkeleton />
-			<ProductCardSkeleton />
 		</div>
 	)
 }

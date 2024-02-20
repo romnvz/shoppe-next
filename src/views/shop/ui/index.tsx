@@ -94,7 +94,7 @@ export const ShopView = () => {
 				</motion.div>
 			)}
 			<div className="container mx-auto max-w-7xl px-5 mt-12">
-				<h1 className="text-3xl mb-6">Каталог товаров</h1>
+				<h1 className="text-2xl md:text-3xl mb-6 mb-12">Каталог товаров</h1>
 				<div className="flex flex-col items-start md:flex-row gap-4 md:gap-8">
 					<UiButton
 						className="md:hidden text-yellow-800 opacity-80"
@@ -133,8 +133,7 @@ export const ShopView = () => {
 						</div>
 					</div>
 					<div className={'w-full'}>
-						{isLoading && <ProductListSkeleton />}
-						{isFetched && <ProductList products={data?.products || []} />}
+						<ProductList products={data?.products || []} />
 					</div>
 				</div>
 			</div>

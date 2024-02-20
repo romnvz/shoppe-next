@@ -1,1 +1,1 @@
-export { ProductPage } from './ui'
+export { ProductView } from './ui'

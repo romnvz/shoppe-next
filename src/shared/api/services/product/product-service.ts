@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 
 import {
 	IAddReviewDto,
@@ -12,14 +12,11 @@ import { httpClient } from '@/shared/api'
 export class ProductService {
 	static async getProducts(params: IProductQueryParams) {
 		try {
-			const { data } = await httpClient.get<IProductList>(
-				process.env.NEXT_PUBLIC_BASE_URL + '/products',
-				{
-					params: {
-						...params,
-					},
+			const { data } = await httpClient.get<IProductList>('/products', {
+				params: {
+					...params,
 				},
-			)
+			})
 
 			return data
 		} catch (err) {
@@ -31,9 +28,7 @@ export class ProductService {
 
 	static async getProductBySku(sku: number) {
 		try {
-			const { data } = await httpClient.get<IProduct>(
-				process.env.NEXT_PUBLIC_BASE_URL + `/products/sku/${sku}`,
-			)
+			const { data } = await httpClient.get<IProduct>(`/products/sku/${sku}`)
 
 			return data
 		} catch (err) {
@@ -43,11 +38,25 @@ export class ProductService {
 		}
 	}
 
+	static async getMultiplyProductsBySkuQuery(sku: number[]) {
+		try {
+			const products = await Promise.all<IProduct[]>(
+				sku.map(s => this.getProductBySku(s)),
+			)
+
+			if (!products) throw new Error('Error!')
+
+			return products
+		} catch (err) {
+			if (err instanceof AxiosError) {
+				throw new Error(err.message)
+			}
+		}
+	}
+
 	static async getFilter() {
 		try {
-			const { data } = await httpClient.get<IFilter>(
-				process.env.NEXT_PUBLIC_BASE_URL + `/products/get-filter`,
-			)
+			const { data } = await httpClient.get<IFilter>(`/products/get-filter`)
 
 			return data
 		} catch (err) {
@@ -59,12 +68,9 @@ export class ProductService {
 
 	static async addReview({ sku, body }: { sku: number; body: IAddReviewDto }) {
 		try {
-			const { data } = await httpClient.post(
-				process.env.NEXT_PUBLIC_BASE_URL + `/products/sku/${sku}/review`,
-				{
-					...body,
-				},
-			)
+			const { data } = await httpClient.post(`/products/sku/${sku}/review`, {
+				...body,
+			})
 
 			return data
 		} catch (err) {

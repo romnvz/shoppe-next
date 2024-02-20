@@ -1,1 +1,1 @@
-export { List, Skeleton } from './ui'
+export { List } from './ui'

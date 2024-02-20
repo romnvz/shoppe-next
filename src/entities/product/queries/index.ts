@@ -30,6 +30,13 @@ export const useGetLatestProductsQuery = () => {
 	})
 }
 
+export const useGetMultiplyProductsBySkuQuery = (sku: number[]) => {
+	return useQuery({
+		queryKey: ['multiply-product-list-by-sku', sku],
+		queryFn: () => ProductService.getMultiplyProductsBySkuQuery(sku),
+	})
+}
+
 // Filter
 export const useGetFilterQuery = () => {
 	return useQuery({

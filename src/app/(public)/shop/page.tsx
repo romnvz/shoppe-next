@@ -1,12 +1,15 @@
+import { Suspense } from 'react'
 import { Metadata } from 'next'
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
 import { ShopView } from '@/views/shop'
 import { ProductService, queryClient } from '@/shared/api'
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-	title: 'Jwrly | Магазин',
+	title:
+		'Jwrly – ювелирный интернет-магазин. Миллионы товаров по выгодным ценам.',
+	description:
+		'Миллионы ювелирных товаров по выгодным ценам: Заколки, цепочки, кольца и многое другое. Скидки и акции каждый день. Доставка по всей России.',
 }
 
 const Shop = async () => {

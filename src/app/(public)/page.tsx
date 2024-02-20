@@ -1,11 +1,14 @@
 import { Metadata } from 'next'
 
-import { HomePage } from '@/views/home'
+import { HomeView } from '@/views/home'
 import { ProductService, queryClient } from '@/shared/api'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
 export const metadata: Metadata = {
-	title: 'Jwrly | Главная',
+	title:
+		'Jwrly – ювелирный интернет-магазин. Миллионы товаров по выгодным ценам.',
+	description:
+		'Миллионы ювелирных товаров по выгодным ценам: Заколки, цепочки, кольца и многое другое. Скидки и акции каждый день. Доставка по всей России.',
 }
 
 const Home = async () => {
@@ -17,7 +20,7 @@ const Home = async () => {
 
 	return (
 		<HydrationBoundary state={dehydrate(qc)}>
-			<HomePage />
+			<HomeView />
 		</HydrationBoundary>
 	)
 }
