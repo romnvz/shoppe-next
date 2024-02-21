@@ -1,13 +1,10 @@
 'use client'
 
 import {
-	ProductCard,
 	ProductList,
 	useGetMultiplyProductsBySkuQuery,
 } from '@/entities/product'
 import { useWishlistStore } from '@/entities/wishlist'
-import { IProduct } from '@/shared/api'
-import { Fragment } from 'react'
 
 export const WishlistView = () => {
 	const { products } = useWishlistStore()
@@ -25,7 +22,7 @@ export const WishlistView = () => {
 	return (
 		<div className="container mx-auto max-w-7xl px-5 mt-12">
 			<h1 className="text-2xl md:text-3xl mb-6 mb-12">Избранное</h1>
-			{data && <ProductList products={data} />}
+			<ProductList products={data || []} />
 		</div>
 	)
 }

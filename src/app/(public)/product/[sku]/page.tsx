@@ -3,6 +3,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
 import { ProductService, queryClient } from '@/shared/api'
 import { ProductView } from '@/views/product'
+import { notFound } from 'next/navigation'
 
 export const generateMetadata = async ({
 	params,

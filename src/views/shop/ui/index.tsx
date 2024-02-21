@@ -5,11 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Search, SlidersHorizontal } from 'lucide-react'
 
-import {
-	ProductList,
-	ProductListSkeleton,
-	useGetProductsQuery,
-} from '@/entities/product'
+import { ProductList, useGetProductsQuery } from '@/entities/product'
 import { UiButton, UiSelect, UiTextField, UiToggle } from '@/shared/ui'
 import { categories } from '../config'
 import { useFiltersStore } from '../model'

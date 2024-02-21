@@ -13,8 +13,12 @@ export const ProductView = ({ sku }: { sku: number }) => {
 
 	return (
 		<>
-			<MainSection product={product} />
-			<Tabs product={product} />
+			{product && (
+				<>
+					<MainSection product={product} />
+					<Tabs product={product} />
+				</>
+			)}
 		</>
 	)
 }

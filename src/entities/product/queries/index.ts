@@ -40,12 +40,12 @@ export const useGetLatestProductsQuery = () => {
 export const useGetMultiplyProductsBySkuQuery = (sku: number[]) => {
 	return useQueries({
 		queries: sku.map(s => ({
-			queryKey: ['product-list-by-sku', sku],
+			queryKey: ['product', s],
 			queryFn: () => ProductService.getProductBySku(s),
 		})),
 		combine: results => {
 			return {
-				data: results.map(result => result.data),
+				data: results.map(result => <IProduct>result.data),
 			}
 		},
 	})
