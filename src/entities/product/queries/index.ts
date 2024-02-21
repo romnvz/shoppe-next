@@ -1,24 +1,31 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
+import {
+	QueryClient,
+	QueryKey,
+	useMutation,
+	useQueries,
+	useQuery,
+} from '@tanstack/react-query'
 
 import {
 	IAddReviewDto,
+	IProduct,
 	IProductQueryParams,
 	ProductService,
 	queryClient,
 } from '@/shared/api'
-import toast from 'react-hot-toast'
 
 // Product
-export const useGetProductsQuery = (body: IProductQueryParams) => {
+export const useGetProductsQuery = (query: IProductQueryParams) => {
 	return useQuery({
-		queryKey: ['product-list', body],
-		queryFn: () => ProductService.getProducts({ ...body }),
+		queryKey: ['product-list', query],
+		queryFn: () => ProductService.getProducts({ ...query }),
 	})
 }
 
 export const useGetProductBySkuQuery = (sku: number) => {
 	return useQuery({
-		queryKey: ['product'],
+		queryKey: ['product', sku],
 		queryFn: () => ProductService.getProductBySku(sku),
 	})
 }
@@ -31,9 +38,16 @@ export const useGetLatestProductsQuery = () => {
 }
 
 export const useGetMultiplyProductsBySkuQuery = (sku: number[]) => {
-	return useQuery({
-		queryKey: ['multiply-product-list-by-sku', sku],
-		queryFn: () => ProductService.getMultiplyProductsBySkuQuery(sku),
+	return useQueries({
+		queries: sku.map(s => ({
+			queryKey: ['product-list-by-sku', sku],
+			queryFn: () => ProductService.getProductBySku(s),
+		})),
+		combine: results => {
+			return {
+				data: results.map(result => result.data),
+			}
+		},
 	})
 }
 

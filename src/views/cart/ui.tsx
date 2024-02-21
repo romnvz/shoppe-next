@@ -11,10 +11,11 @@ import Link from 'next/link'
 
 export const CartView = () => {
 	const { items } = useCartStore()
-	const totalPrice = selectCartTotalPrice()
 	const { data } = useGetMultiplyProductsBySkuQuery(
 		items.map(i => i.product.sku),
 	)
+	const totalPrice = selectCartTotalPrice()
+
 	return (
 		<div className="container mx-auto max-w-7xl px-5 mt-6 md:mt-12">
 			<h1 className="text-2xl md:text-3xl mb-6 mb-12">Корзина</h1>
@@ -24,26 +25,30 @@ export const CartView = () => {
 						{data?.map(product => (
 							<div
 								className="flex justify-between"
-								key={product.sku}
+								key={product?.sku}
 							>
 								<div className="flex gap-4 md:gap-10">
 									<div className="relative w-32 h-32 rounded overflow-hidden">
 										<Image
-											src={product.images[0]}
-											alt={product.name}
+											src={product?.images[0] ?? ''}
+											alt={product?.name ?? ''}
 											fill
 										/>
 									</div>
 									<div className="flex flex-col gap-1">
-										<div className="text-sm md:text-xl">{product.name}</div>
+										<div className="text-sm md:text-xl">{product?.name}</div>
 										<div className="text-sm md:text-base text-zinc-500 md:text-yellow-800 md:opacity-80">
-											$ {product.price},00
+											$ {product?.price},00
 										</div>
 									</div>
 								</div>
 								<div className="flex md:flex-row flex-col-reverse md:items-start items-end gap-9">
-									<AddToCart product={product} />
-									<DeleteFromCart productSku={product.sku} />
+									{product && (
+										<>
+											<AddToCart product={product} />
+											<DeleteFromCart productSku={product.sku} />
+										</>
+									)}
 								</div>
 							</div>
 						))}

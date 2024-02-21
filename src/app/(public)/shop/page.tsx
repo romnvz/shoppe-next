@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
@@ -28,9 +27,7 @@ const Shop = async () => {
 
 	return (
 		<HydrationBoundary state={dehydrate(qc)}>
-			<Suspense fallback={<>Loading..</>}>
-				<ShopView />
-			</Suspense>
+			<ShopView />
 		</HydrationBoundary>
 	)
 }

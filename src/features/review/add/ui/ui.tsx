@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 import { useReviewStore } from '../model'
@@ -6,7 +6,7 @@ import { IAddReviewDto } from '@/shared/api'
 import { useAddReviewMutation } from '@/entities/product'
 import { UiButton, UiRating, UiTextArea, UiTextField } from '@/shared/ui'
 
-export const AddReviewForm = ({ sku }: { sku: number }) => {
+export const AddReviewForm: FC<{ sku: number }> = ({ sku }) => {
 	const { fields, setFields } = useReviewStore()
 	const { register, handleSubmit, reset, control } = useForm<IAddReviewDto>({
 		defaultValues: {

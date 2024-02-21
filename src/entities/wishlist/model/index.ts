@@ -4,8 +4,8 @@ import { create, StateCreator } from 'zustand'
 import { IProduct } from '@/shared/api'
 
 interface IWishlistState {
-	products: IProduct['sku'][]
-	toggleWishlistProduct: (productSku: IProduct['sku']) => void
+	products: number[]
+	toggleWishlistProduct: (productSku: number) => void
 }
 
 const wishlistSlice: StateCreator<
@@ -30,7 +30,7 @@ const wishlistSlice: StateCreator<
 		}),
 })
 
-export const selectIsInWishlist = (sku: IProduct['sku']) => {
+export const selectIsInWishlist = (sku: number) => {
 	if (useWishlistStore.getState().products.includes(sku)) {
 		return true
 	}

@@ -2,20 +2,13 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 import { create, StateCreator } from 'zustand'
 
 import { IProduct } from '@/shared/api'
-
-interface ICartItem {
-	product: {
-		sku: IProduct['sku']
-		price: IProduct['price']
-	}
-	quantity: number
-}
+import { ICartItem } from './types'
 
 interface ICartState {
 	items: ICartItem[]
-	addOneItem: (product: IProduct) => void
-	removeOneItem: (sku: IProduct['sku']) => void
-	removeItem: (sku: IProduct['sku']) => void
+	addOneItem: (product: ICartItem['product']) => void
+	removeOneItem: (sku: number) => void
+	removeItem: (sku: number) => void
 	clearCartData: () => void
 }
 

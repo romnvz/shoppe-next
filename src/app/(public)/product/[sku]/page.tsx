@@ -22,8 +22,12 @@ export const generateMetadata = async ({
 const Product = async ({ params }: { params: { sku: number } }) => {
 	const qc = queryClient
 	await qc.prefetchQuery({
-		queryKey: ['product'],
+		queryKey: ['product', params.sku],
 		queryFn: () => ProductService.getProductBySku(params.sku),
+	})
+	await qc.prefetchQuery({
+		queryKey: ['filter'],
+		queryFn: () => ProductService.getFilter(),
 	})
 
 	return (

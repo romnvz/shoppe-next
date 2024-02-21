@@ -1,9 +1,10 @@
+import { FC } from 'react'
 import clsx from 'clsx'
 import { Heart } from 'lucide-react'
 
 import { useWishlistStore, selectIsInWishlist } from '@/entities/wishlist'
 
-export const AddToWishlist = ({ sku }: { sku: number }) => {
+export const AddToWishlist: FC<{ sku: number }> = ({ sku }) => {
 	const { toggleWishlistProduct } = useWishlistStore()
 
 	return (

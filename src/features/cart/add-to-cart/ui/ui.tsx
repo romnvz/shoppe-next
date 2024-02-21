@@ -13,7 +13,7 @@ interface IAddToCartProps {
 
 export const AddToCart: FC<IAddToCartProps> = ({ product }) => {
 	const { addOneItem, removeOneItem } = useCartStore()
-	const productInCart = selectProductInCart(product.sku)
+	const productInCart = selectProductInCart(product?.sku)
 
 	const onClickToAdd = () => {
 		addOneItem(product)

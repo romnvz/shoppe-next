@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 
 import {
 	IAddReviewDto,
@@ -10,11 +10,11 @@ import {
 import { httpClient } from '@/shared/api'
 
 export class ProductService {
-	static async getProducts(params: IProductQueryParams) {
+	static async getProducts(query: IProductQueryParams) {
 		try {
 			const { data } = await httpClient.get<IProductList>('/products', {
 				params: {
-					...params,
+					...query,
 				},
 			})
 
@@ -31,22 +31,6 @@ export class ProductService {
 			const { data } = await httpClient.get<IProduct>(`/products/sku/${sku}`)
 
 			return data
-		} catch (err) {
-			if (err instanceof AxiosError) {
-				throw new Error(err.message)
-			}
-		}
-	}
-
-	static async getMultiplyProductsBySkuQuery(sku: number[]) {
-		try {
-			const products = await Promise.all<IProduct[]>(
-				sku.map(s => this.getProductBySku(s)),
-			)
-
-			if (!products) throw new Error('Error!')
-
-			return products
 		} catch (err) {
 			if (err instanceof AxiosError) {
 				throw new Error(err.message)
