@@ -11,7 +11,7 @@ interface IAddToCartProps {
 }
 
 export const DeleteFromCart: FC<IAddToCartProps> = ({ productSku }) => {
-	const { removeItem } = useCartStore()
+	const { removeItemFromCart } = useCartStore()
 
 	const onClickToRemove = () => {
 		const isConfirmed = confirm(
@@ -21,7 +21,7 @@ export const DeleteFromCart: FC<IAddToCartProps> = ({ productSku }) => {
 			return
 		}
 
-		removeItem(productSku)
+		removeItemFromCart(productSku)
 		toast.success('Товар успешно удален из корзины!')
 	}
 

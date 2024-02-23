@@ -1,15 +1,19 @@
 import { Metadata } from 'next'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
-import { ProductService, queryClient } from '@/shared/api'
+import { ProductService } from '@/shared/api/services/product'
 import { ProductView } from '@/views/product'
-import { notFound } from 'next/navigation'
+import { queryClient } from '@/shared/api'
+
+interface IProductProps {
+	params: {
+		sku: number
+	}
+}
 
 export const generateMetadata = async ({
 	params,
-}: {
-	params: { sku: number }
-}): Promise<Metadata> => {
+}: IProductProps): Promise<Metadata> => {
 	const product = await ProductService.getProductBySku(params.sku)
 	const filters = await ProductService.getFilter()
 	const category = filters?.categories.find(c => c.id === product?.categoryId)
@@ -20,7 +24,7 @@ export const generateMetadata = async ({
 	}
 }
 
-const Product = async ({ params }: { params: { sku: number } }) => {
+const Product = async ({ params }: IProductProps) => {
 	const qc = queryClient
 	await qc.prefetchQuery({
 		queryKey: ['product', params.sku],
@@ -33,7 +37,7 @@ const Product = async ({ params }: { params: { sku: number } }) => {
 
 	return (
 		<HydrationBoundary state={dehydrate(qc)}>
-			<ProductView sku={params.sku} />
+			<ProductView {...params} />
 		</HydrationBoundary>
 	)
 }

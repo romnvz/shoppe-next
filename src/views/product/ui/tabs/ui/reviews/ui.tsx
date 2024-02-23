@@ -1,5 +1,5 @@
-import { IProduct } from '@/shared/api'
 import { UiRating } from '@/shared/ui'
+import { IProduct } from '@/shared/api/services/product'
 import { AddReviewForm } from '@/features/review/add'
 
 export const Reviews = ({ product }: { product: IProduct }) => {

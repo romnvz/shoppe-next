@@ -2,8 +2,8 @@ import { FC, useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 import { useReviewStore } from '../model'
-import { IAddReviewDto } from '@/shared/api'
 import { useAddReviewMutation } from '@/entities/product'
+import { IAddReviewDto } from '@/shared/api/services/product'
 import { UiButton, UiRating, UiTextArea, UiTextField } from '@/shared/ui'
 
 export const AddReviewForm: FC<{ sku: number }> = ({ sku }) => {

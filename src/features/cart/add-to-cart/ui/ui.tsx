@@ -12,11 +12,11 @@ interface IAddToCartProps {
 }
 
 export const AddToCart: FC<IAddToCartProps> = ({ product }) => {
-	const { addOneItem, removeOneItem } = useCartStore()
+	const { addItemToCart, increaseQuantity, decreaseQuantity } = useCartStore()
 	const productInCart = selectProductInCart(product?.sku)
 
 	const onClickToAdd = () => {
-		addOneItem(product)
+		addItemToCart(product)
 		toast.success('Товар успешно добавлен в корзину!')
 	}
 
@@ -26,14 +26,14 @@ export const AddToCart: FC<IAddToCartProps> = ({ product }) => {
 				<div className="flex gap-4 sm:py-3 sm:px-3 px-1.5 py-1.5 items-center bg-zinc-100 text-zinc-500 rounded">
 					<button
 						className="w-3.5"
-						onClick={() => removeOneItem(product.sku)}
+						onClick={() => decreaseQuantity(product.sku)}
 					>
 						-
 					</button>
 					<div className="w-3.5">{productInCart.quantity}</div>
 					<button
 						className="w-3.5"
-						onClick={() => addOneItem(product)}
+						onClick={() => increaseQuantity(product.sku)}
 					>
 						+
 					</button>

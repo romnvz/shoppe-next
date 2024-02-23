@@ -1,19 +1,13 @@
 import toast from 'react-hot-toast'
-import {
-	QueryClient,
-	QueryKey,
-	useMutation,
-	useQueries,
-	useQuery,
-} from '@tanstack/react-query'
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query'
 
 import {
 	IAddReviewDto,
 	IProduct,
 	IProductQueryParams,
 	ProductService,
-	queryClient,
-} from '@/shared/api'
+} from '@/shared/api/services/product'
+import { queryClient } from '@/shared/api'
 
 // Product
 export const useGetProductsQuery = (query: IProductQueryParams) => {

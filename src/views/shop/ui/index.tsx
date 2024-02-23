@@ -28,7 +28,7 @@ export const ShopView = () => {
 		}
 	}, [])
 
-	const { data, isLoading, isFetched } = useGetProductsQuery({
+	const { data } = useGetProductsQuery({
 		limit: 6,
 		offset: 0,
 		categoryId: categoryId,

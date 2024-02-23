@@ -7,7 +7,7 @@ import { useCartStore } from '@/entities/cart'
 
 export const Nav = () => {
 	const { isOpen, open, close } = useHeaderStore()
-	const { items } = useCartStore()
+	const { cartItems } = useCartStore()
 
 	const DesktopNav = (
 		<nav className="hidden md:flex items-center gap-12">
@@ -25,10 +25,10 @@ export const Nav = () => {
 						width={20}
 						height={20}
 					/>
-					{items.length > 0 && (
+					{cartItems.length > 0 && (
 						<div className="absolute w-4 h-4 border-2 rounded-full border-black bg-white bottom-2.5 left-2.5 text-center z-10">
 							<div className="text-xs font-semibold leading-none">
-								{items.length < 10 ? items.length : '∞'}
+								{cartItems.length < 10 ? cartItems.length : '∞'}
 							</div>
 						</div>
 					)}
@@ -59,10 +59,10 @@ export const Nav = () => {
 					width={20}
 					height={20}
 				/>
-				{items.length > 0 && (
+				{cartItems.length > 0 && (
 					<div className="absolute w-4 h-4 border-2 rounded-full border-black bg-white bottom-2.5 left-2.5 text-center z-10">
 						<div className="text-xs font-semibold leading-none">
-							{items.length < 10 ? items.length : '∞'}
+							{cartItems.length < 10 ? cartItems.length : '∞'}
 						</div>
 					</div>
 				)}

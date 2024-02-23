@@ -1,14 +1,15 @@
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { create, StateCreator } from 'zustand'
 
-import { IProduct } from '@/shared/api'
 import { ICartItem } from './types'
+import { IProduct } from '@/shared/api/services/product'
 
 interface ICartState {
-	items: ICartItem[]
-	addOneItem: (product: ICartItem['product']) => void
-	removeOneItem: (sku: number) => void
-	removeItem: (sku: number) => void
+	cartItems: ICartItem[]
+	addItemToCart: (product: IProduct) => void
+	increaseQuantity: (productSku: number) => void
+	decreaseQuantity: (productSku: number) => void
+	removeItemFromCart: (sku: number) => void
 	clearCartData: () => void
 }
 
@@ -16,61 +17,80 @@ const cartSlice: StateCreator<
 	ICartState,
 	[['zustand/persist', unknown]]
 > = set => ({
-	items: [],
-	addOneItem: product =>
+	cartItems: [],
+	addItemToCart: item =>
 		set(state => {
-			const item = state.items.find(i => i.product.sku === product.sku)
-			if (!item) {
-				return { items: [...state.items, { product, quantity: 1 }] }
+			const itemExists = state.cartItems.find(
+				cartItem => cartItem.product.sku === item.sku,
+			)
+
+			if (itemExists) {
+				return { items: [...state.cartItems] }
 			}
 
-			item.quantity += 1
-
-			return {
-				items: [...state.items],
-			}
+			return { cartItems: [...state.cartItems, { product: item, quantity: 1 }] }
 		}),
-	removeOneItem: sku =>
+	increaseQuantity: productSku =>
 		set(state => {
-			const item = state.items.find(i => i.product.sku === sku)
-			if (!item) {
-				throw new Error('Product not found!')
+			const itemExists = state.cartItems.find(
+				cartItem => cartItem.product.sku === productSku,
+			)
+
+			if (itemExists) {
+				if (typeof itemExists.quantity === 'number') {
+					itemExists.quantity++
+				}
+
+				return { cartItems: [...state.cartItems] }
 			}
 
-			if (item.quantity > 1) {
-				item.quantity -= 1
-			}
-
-			return {
-				items: [...state.items],
-			}
+			return { cartItems: [...state.cartItems] }
 		}),
-	removeItem: sku =>
+	decreaseQuantity: productSku =>
 		set(state => {
-			const item = state.items.find(i => i.product.sku === sku)
-			if (!item) {
-				throw new Error('Product not found!')
-			}
-			const indexItem = state.items.indexOf(item)
-			if (indexItem > -1) {
-				state.items.splice(indexItem, 1)
+			const itemExists = state.cartItems.find(
+				cartItem => cartItem.product.sku === productSku,
+			)
+
+			if (itemExists) {
+				if (typeof itemExists.quantity === 'number') {
+					if (itemExists.quantity === 1) {
+						return { cartItems: [...state.cartItems] }
+					}
+					itemExists.quantity--
+				}
 			}
 
-			return {
-				items: [...state.items],
-			}
+			return { cartItems: [...state.cartItems] }
 		}),
-	clearCartData: () => set(() => ({ items: [] })),
+	removeItemFromCart: productSku =>
+		set(state => {
+			const itemExists = state.cartItems.find(
+				cartItem => cartItem.product.sku === productSku,
+			)
+
+			if (itemExists) {
+				if (typeof itemExists.quantity === 'number') {
+					const indexItem = state.cartItems.indexOf(itemExists)
+					if (indexItem > -1) {
+						state.cartItems.splice(indexItem, 1)
+					}
+				}
+			}
+
+			return { cartItems: [...state.cartItems] }
+		}),
+	clearCartData: () => set(() => ({ cartItems: [] })),
 })
 
 export const selectCartTotalPrice = () => {
-	return useCartStore.getState().items.reduce((acc, item) => {
+	return useCartStore.getState().cartItems.reduce((acc, item) => {
 		return (acc += item.quantity * item.product.price)
 	}, 0)
 }
 
 export const selectProductInCart = (sku: number): ICartItem | undefined => {
-	return useCartStore.getState().items.find(p => p.product.sku === sku)
+	return useCartStore.getState().cartItems.find(p => p.product.sku === sku)
 }
 
 export const useCartStore = create<ICartState>()(

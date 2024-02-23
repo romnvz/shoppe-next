@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
 import { ShopView } from '@/views/shop'
-import { ProductService, queryClient } from '@/shared/api'
+import { ProductService } from '@/shared/api/services/product'
+import { queryClient } from '@/shared/api'
 
 export const metadata: Metadata = {
 	title:

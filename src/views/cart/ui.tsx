@@ -1,25 +1,26 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
+
 import { useCartStore } from '@/entities/cart'
 import { selectCartTotalPrice } from '@/entities/cart'
 import { useGetMultiplyProductsBySkuQuery } from '@/entities/product'
 import { AddToCart } from '@/features/cart/add-to-cart'
 import { DeleteFromCart } from '@/features/cart/delete-from-cart'
 import { UiButton, UiTextField } from '@/shared/ui'
-import Image from 'next/image'
-import Link from 'next/link'
 
 export const CartView = () => {
-	const { items } = useCartStore()
+	const { cartItems } = useCartStore()
 	const { data } = useGetMultiplyProductsBySkuQuery(
-		items.map(i => i.product.sku),
+		cartItems.map(i => i.product.sku),
 	)
-	const totalPrice = selectCartTotalPrice()
+	// const totalPrice = selectCartTotalPrice(data?.map(p => p.pr))
 
 	return (
 		<div className="container mx-auto max-w-7xl px-5 mt-6 md:mt-12">
 			<h1 className="text-2xl md:text-3xl mb-6 mb-12">Корзина</h1>
-			{items.length ? (
+			{cartItems.length ? (
 				<div className="flex flex-col md:flex-row gap-36">
 					<div className="w-full flex flex-col gap-10">
 						{data?.map(product => (
@@ -87,7 +88,7 @@ export const CartView = () => {
 								<hr />
 								<div className="flex items-center justify-between">
 									<div className="text-base font-bold">Стоимость</div>
-									<div className="text-base font-bold">${totalPrice},00</div>
+									{/* <div className="text-base font-bold">${totalPrice},00</div> */}
 								</div>
 							</div>
 							<UiButton

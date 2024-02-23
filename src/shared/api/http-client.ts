@@ -1,3 +1,4 @@
+import { useSessionStore } from '@/entities/session/model'
 import axios from 'axios'
 
 export const httpClient = axios.create({
@@ -5,4 +6,9 @@ export const httpClient = axios.create({
 	headers: {
 		'Content-type': 'application/json',
 	},
+})
+
+httpClient.interceptors.request.use(req => {
+	req.headers.authorization = `Bearer ${useSessionStore.getState().accessToken}`
+	return req
 })
