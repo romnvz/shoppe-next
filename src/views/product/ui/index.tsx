@@ -6,15 +6,19 @@ import { Tabs } from './tabs'
 import { MainSection } from './main-section'
 import { useGetProductBySkuQuery } from '@/entities/product'
 
-export const ProductPage = ({ params }: { params: { sku: string } }) => {
-	const { data: product } = useGetProductBySkuQuery(Number(params.sku))
+export const ProductView = ({ sku }: { sku: number }) => {
+	const { data: product } = useGetProductBySkuQuery(sku)
 
 	if (!product) notFound()
 
 	return (
 		<>
-			<MainSection product={product} />
-			<Tabs product={product} />
+			{product && (
+				<>
+					<MainSection product={product} />
+					<Tabs product={product} />
+				</>
+			)}
 		</>
 	)
 }

@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { UiButton } from '@/shared/ui'
 
-export const NotFoundPage = () => {
+export const NotFoundView = () => {
 	return (
 		<div className="container mx-auto max-w-7xl px-5">
 			<div className="flex flex-col items-center gap-12 mt-6">

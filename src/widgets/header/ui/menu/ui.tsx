@@ -1,8 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
-
-import { accountPaths, basePaths } from './config'
 import { FolderHeart, User } from 'lucide-react'
 
 export const Menu = () => {
@@ -47,7 +44,7 @@ export const Menu = () => {
 						Мой аккаунт
 					</Link>
 					<Link
-						href="/profile"
+						href="/wishlist"
 						className="flex items-center text-xl text-black gap-3"
 					>
 						<FolderHeart

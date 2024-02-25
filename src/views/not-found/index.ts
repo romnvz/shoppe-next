@@ -1,1 +1,1 @@
-export { NotFoundPage } from './ui'
+export { NotFoundView } from './ui'

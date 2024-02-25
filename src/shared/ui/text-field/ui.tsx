@@ -21,9 +21,9 @@ export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
 					className={clsx(
 						'block w-full border-gray-300 text-gray-900 text-sm outline-none',
 						{
-							'bg-gray-50 border rounded-lg focus:ring-blue-500 focus:border-blue-600 p-2.5':
+							'bg-gray-50 border rounded-lg focus:border-yellow-800 opacity-80 p-2.5':
 								variant === 'filled',
-							'bg-transparent border-b focus:ring-blue-500 focus:border-blue-600 py-2.5':
+							'bg-transparent border-b focus:border-yellow-800 opacity-80 py-2.5':
 								variant === 'standard',
 							'ps-10': leadingIcon,
 							'pe-10': trailingIcon,

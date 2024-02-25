@@ -5,11 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Search, SlidersHorizontal } from 'lucide-react'
 
-import {
-	ProductList,
-	ProductListSkeleton,
-	useGetProductsQuery,
-} from '@/entities/product'
+import { ProductList, useGetProductsQuery } from '@/entities/product'
 import { UiButton, UiSelect, UiTextField, UiToggle } from '@/shared/ui'
 import { categories } from '../config'
 import { useFiltersStore } from '../model'
@@ -32,7 +28,7 @@ export const ShopView = () => {
 		}
 	}, [])
 
-	const { data, isLoading, isFetched } = useGetProductsQuery({
+	const { data } = useGetProductsQuery({
 		limit: 6,
 		offset: 0,
 		categoryId: categoryId,
@@ -94,7 +90,7 @@ export const ShopView = () => {
 				</motion.div>
 			)}
 			<div className="container mx-auto max-w-7xl px-5 mt-12">
-				<h1 className="text-3xl mb-6">Каталог товаров</h1>
+				<h1 className="text-2xl md:text-3xl mb-6 mb-12">Каталог товаров</h1>
 				<div className="flex flex-col items-start md:flex-row gap-4 md:gap-8">
 					<UiButton
 						className="md:hidden text-yellow-800 opacity-80"
@@ -133,8 +129,7 @@ export const ShopView = () => {
 						</div>
 					</div>
 					<div className={'w-full'}>
-						{isLoading && <ProductListSkeleton />}
-						{isFetched && <ProductList products={data?.products || []} />}
+						<ProductList products={data?.products || []} />
 					</div>
 				</div>
 			</div>

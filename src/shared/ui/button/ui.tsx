@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, FC } from 'react'
 import clsx from 'clsx'
 
 type TButtonVariant = 'contained' | 'text' | 'outlined'
@@ -6,12 +6,12 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: TButtonVariant
 }
 
-export const Button = ({
+export const Button: FC<IButtonProps> = ({
 	variant = 'text',
 	className,
 	children,
 	...props
-}: IButtonProps) => {
+}) => {
 	return (
 		<button
 			className={clsx(

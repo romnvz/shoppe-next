@@ -1,9 +1,10 @@
 'use client'
 
-import { UiButton } from '@/shared/ui'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+
+import { UiButton } from '@/shared/ui'
 
 export const Hero = () => {
 	const [activeIndex, setActiveIndex] = useState(0)

@@ -9,14 +9,20 @@ export interface ITabItem {
 }
 
 interface ITabsProps {
+	className?: string
 	tabs: ITabItem[]
 	activeTab: string
 	setActiveTab: (activeTab: string) => void
 }
 
-export const Tabs = ({ tabs, activeTab, setActiveTab }: ITabsProps) => {
+export const Tabs = ({
+	className,
+	tabs,
+	activeTab,
+	setActiveTab,
+}: ITabsProps) => {
 	return (
-		<div className="flex flex-col gap-16">
+		<div className={clsx('flex flex-col gap-16', className)}>
 			<div className="flex items-center gap-16 pb-6 border-b text-zinc-500">
 				{tabs.map(({ label }) => (
 					<Fragment key={label}>

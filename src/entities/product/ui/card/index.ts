@@ -1,1 +1,1 @@
-export { Card, Skeleton } from './ui'
+export { Card } from './ui'

@@ -10,16 +10,13 @@ import {
 import { httpClient } from '@/shared/api'
 
 export class ProductService {
-	static async getProducts(params: IProductQueryParams) {
+	static async getProducts(query: IProductQueryParams) {
 		try {
-			const { data } = await httpClient.get<IProductList>(
-				process.env.NEXT_PUBLIC_BASE_URL + '/products',
-				{
-					params: {
-						...params,
-					},
+			const { data } = await httpClient.get<IProductList>('/products', {
+				params: {
+					...query,
 				},
-			)
+			})
 
 			return data
 		} catch (err) {
@@ -31,9 +28,7 @@ export class ProductService {
 
 	static async getProductBySku(sku: number) {
 		try {
-			const { data } = await httpClient.get<IProduct>(
-				process.env.NEXT_PUBLIC_BASE_URL + `/products/sku/${sku}`,
-			)
+			const { data } = await httpClient.get<IProduct>(`/products/sku/${sku}`)
 
 			return data
 		} catch (err) {
@@ -45,9 +40,7 @@ export class ProductService {
 
 	static async getFilter() {
 		try {
-			const { data } = await httpClient.get<IFilter>(
-				process.env.NEXT_PUBLIC_BASE_URL + `/products/get-filter`,
-			)
+			const { data } = await httpClient.get<IFilter>(`/products/get-filter`)
 
 			return data
 		} catch (err) {
@@ -59,12 +52,9 @@ export class ProductService {
 
 	static async addReview({ sku, body }: { sku: number; body: IAddReviewDto }) {
 		try {
-			const { data } = await httpClient.post(
-				process.env.NEXT_PUBLIC_BASE_URL + `/products/sku/${sku}/review`,
-				{
-					...body,
-				},
-			)
+			const { data } = await httpClient.post(`/products/sku/${sku}/review`, {
+				...body,
+			})
 
 			return data
 		} catch (err) {

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'
 
 import { Header } from '@/widgets/header'
@@ -19,7 +19,9 @@ export default function RootLayout({
 			<body className="min-h-screen flex flex-col">
 				<Provider>
 					<Header />
-					<main className="flex-1">{children}</main>
+					<Suspense fallback={<>Loading..</>}>
+						<main className="flex-1">{children}</main>
+					</Suspense>
 					<Toaster position="bottom-center" />
 					<Footer />
 				</Provider>
